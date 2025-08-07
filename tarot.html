@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>塔罗三卡阵 - AI小仙在线塔罗占卜</title>
+    <meta name="description" content="在线体验过去/现在/未来三卡塔罗阵，无需注册，点击翻牌即可查看指引。"/>
+    <meta name="keywords" content="塔罗占卜,三卡阵,在线塔罗,免费塔罗测试"/>
+    <link rel="canonical" href="https://qinyufen.dpdns.org/tarot.html"/>
+
+    <!-- FAQ 结构化数据（Google 富结果） -->
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"FAQPage",
+            "mainEntity":[{
+                "@type":"Question",
+                "name":"三卡阵需要塔罗基础吗？",
+                "acceptedAnswer":{
+                    "@type":"Answer",
+                    "text":"不需要任何基础，点击翻牌即可阅读牌意。"
+                }
+            }]
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="img/favicon.png"/>
+</head>
+<body class="light">
+<header id="header"></header>
+<main>
+    <div class="card">
+        <h1>塔罗三卡阵</h1>
+        <ol>
+            <li>清空杂念，默想你关心的问题。</li>
+            <li>依次点击三张牌。</li>
+            <li>阅读牌意，做出选择。</li>
+        </ol>
+        <div class="tarot-wrap">
+            <div class="tarot-card" data-pos="0">❓</div>
+            <div class="tarot-card" data-pos="1">❓</div>
+            <div class="tarot-card" data-pos="2">❓</div>
+        </div>
+        <div id="tarotResult" style="margin-top:32px;font-size:18px;"></div>
+        <button class="btn" onclick="initTarot()">重新洗牌</button>
+    </div>
+</main>
+<footer id="footer"></footer>
+<script src="js/common.js"></script>
+<script>
+    const tarotCards = [
+        "愚者 - 新旅程","魔术师 - 创造力","女祭司 - 直觉","皇后 - 丰饶","皇帝 - 秩序",
+        "教皇 - 传统","恋人 - 选择","战车 - 胜利","力量 - 勇气","隐士 - 内省",
+        "命运之轮 - 转折","正义 - 平衡","倒吊人 - 牺牲","死神 - 结束","节制 - 调和",
+        "恶魔 - 欲望","塔 - 突变","星星 - 希望","月亮 - 迷惑","太阳 - 成功"
+    ];
+    function initTarot(){
+        document.querySelectorAll('.tarot-card').forEach(card=>{
+            card.textContent='❓'; card.classList.remove('flipped');
+            card.onclick=()=>flipCard(card);
+        });
+        document.getElementById('tarotResult').textContent='';
+    }
+    function flipCard(card){
+        if(card.classList.contains('flipped')) return;
+        const pos=card.dataset.pos;
+        const idx=Math.floor(Math.random()*tarotCards.length);
+        card.textContent=tarotCards[idx]; card.classList.add('flipped');
+        const labels=['过去','现在','未来'];
+        document.getElementById('tarotResult').innerHTML+=`${labels[pos]}：<strong>${tarotCards[idx]}</strong><br>`;
+    }
+    initTarot();
+</script>
+</body>
+</html>

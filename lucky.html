@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>今日幸运签 - AI小仙免费在线抽签</title>
+    <meta name="description" content="抽取今日专属幸运签，附赠幸运颜色与幸运数字，完全免费，无需注册。"/>
+    <meta name="keywords" content="今日运势,幸运签,幸运颜色,幸运数字,免费抽签"/>
+    <link rel="canonical" href="https://qinyufen.dpdns.org/lucky.html"/>
+
+    <!-- Open Graph / Twitter 同上略 -->
+    <meta property="og:title" content="今日幸运签 - AI小仙"/>
+    <meta property="og:url" content="https://qinyufen.dpdns.org/lucky.html"/>
+    <meta property="og:image" content="https://qinyufen.dpdns.org/img/og-lucky.jpg"/>
+
+    <!-- Breadcrumb -->
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+                {"@type":"ListItem","position":1,"name":"首页","item":"https://你的域名.com/index.html"},
+                {"@type":"ListItem","position":2,"name":"今日幸运签","item":"https://你的域名.com/lucky.html"}
+            ]
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="img/favicon.png"/>
+</head>
+<body class="light">
+<header id="header"></header>
+<main>
+    <div class="card">
+        <h1>今日幸运签</h1>
+        <p>每日 00:00 自动刷新，点击下方按钮立即抽取。</p>
+        <button class="btn" onclick="drawLucky()">抽取今日幸运签</button>
+        <div id="luckyResult">点击下方按钮，让好运发生 ✨</div>
+    </div>
+</main>
+<footer id="footer"></footer>
+<script src="js/common.js"></script>
+<script>
+    const fortunes = [
+        "【上上签】鸿运当头，凡事宜勇进，心想事成。",
+        "【中上签】云开见月，自有贵人，稳中求胜。",
+        "【中签】波澜不惊，顺其自然，可得小成。",
+        "【中下签】偶有阻滞，需沉心静气，三思后行。",
+        "【下下签】晦暗不明，宜守不宜攻，静待时机。"
+    ];
+    const luckyColors = ["樱花粉","薄荷绿","薰衣草紫","天空蓝","柠檬黄"];
+    function drawLucky(){
+        const idx = Math.floor(Math.random()*fortunes.length);
+        const luckyNum = Math.floor(Math.random()*99)+1;
+        const luckyClr = luckyColors[Math.floor(Math.random()*luckyColors.length)];
+        document.getElementById('luckyResult').innerHTML = `
+        <strong>${fortunes[idx]}</strong><br>
+        幸运颜色：<span style="color:${['#ff85a2','#4cd3a6','#b388ff','#5cabff','#ffd93d'][luckyColors.indexOf(luckyClr)]}">${luckyClr}</span>｜幸运数字：<strong>${luckyNum}</strong>
+      `;
+    }
+</script>
+</body>
+</html>
