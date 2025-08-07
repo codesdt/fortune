@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>在线免费算命 - AI小仙今日运势抽签</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="免费算命,在线抽签,今日运势,AI占卜">
+    <meta name="description" content="AI小仙提供免费的在线算命与抽签体验，打开网页即可查看今日运势。">
+    <style>
+        :root{--card:#ffffffdd;--radius:20px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+            min-height:100vh;
+            display:flex;align-items:center;justify-content:center;
+            background:url('data:image/svg+xml;utf8,\
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">\
+                  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">\
+                    <stop offset="0%" stop-color="%23e0c3fc"/>\
+                    <stop offset="50%" stop-color="%239bb5ff"/>\
+                    <stop offset="100%" stop-color="%236f86d6"/>\
+                  </linearGradient></defs>\
+                  <rect width="100%" height="100%" fill="url(%23g)"/>\
+                  <circle cx="200" cy="150" r="80" fill="%23ffffff1a"/>\
+                  <circle cx="1400" cy="200" r="120" fill="%23ffffff1a"/>\
+                  <circle cx="1200" cy="750" r="100" fill="%23ffffff1a"/>\
+                  <circle cx="300" cy="800" r="90" fill="%23ffffff1a"/>\
+                </svg>') center/cover no-repeat fixed;
+            color:#333;
+        }
+        .card{
+            width:min(92vw,400px);
+            background:var(--card);
+            border-radius:var(--radius);
+            box-shadow:0 12px 40px rgba(0,0,0,.15);
+            padding:44px 36px 50px;
+            text-align:center;
+            backdrop-filter:blur(10px);
+            border:1px solid #ffffff80;
+        }
+        h1{
+            font-size:28px;
+            font-weight:700;
+            background:linear-gradient(135deg,#8e2de2,#4a00e0);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            margin-bottom:10px;
+        }
+        p.sub{font-size:15px;color:#555;margin-bottom:32px}
+        .btn{
+            border:none;
+            width:100%;
+            padding:15px 0;
+            font-size:17px;
+            font-weight:600;
+            border-radius:var(--radius);
+            color:#fff;
+            cursor:pointer;
+            background:linear-gradient(135deg,#8e2de2 0%,#4a00e0 50%,#ffa751 100%);
+            background-size:220% 100%;
+            background-position:0 0;
+            transition:.4s;
+        }
+        .btn:hover{background-position:100% 0;box-shadow:0 6px 22px rgba(142,45,226,.35)}
+        #result{
+            margin-top:30px;
+            font-size:16px;
+            line-height:1.8;
+            color:#333;
+            min-height:64px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#f5f0ffcc;
+            border:1px solid #e5d5ff;
+            border-radius:var(--radius);
+            padding:18px 22px;
+            transition:.3s;
+        }
+        .fade{animation:fadeIn .6s}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+        /* 网站标题 */
+        footer{
+            margin-top:40px;
+            font-size:13px;
+            color:#666;
+            letter-spacing:.5px;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>AI小仙 · 今日运势抽签</h1>
+        <p class="sub">点击下方按钮，抽取你的专属签文</p>
+        <button class="btn" onclick="tell()">立即占卜</button>
+
+        <!-- 默认提示语 -->
+        <div id="result">
+            <span style="color:#777">心诚则灵，点击按钮即可查看今日指引 ✨</span>
+        </div>
+
+        <!-- 网站标题 -->
+        <footer>AI小仙 · 免费在线算命</footer>
+    </main>
+
+    <script>
+        const fortunes = [
+            "【上上签】鸿运当头，凡事宜勇进，心想事成。",
+            "【中上签】云开见月，自有贵人，稳中求胜。",
+            "【中签】波澜不惊，顺其自然，可得小成。",
+            "【中下签】偶有阻滞，需沉心静气，三思后行。",
+            "【下下签】晦暗不明，宜守不宜攻，静待时机。",
+            "【桃花签】春风满面，情感升温，宜主动出击。",
+            "【事业签】贵人提携，项目顺遂，可更上层楼。",
+            "【财运签】财源小聚，投资谨慎，见好即收。",
+            "【学业签】勤能补拙，静心钻研，必有所成。",
+            "【健康签】劳逸结合，清淡饮食，安然无恙。"
+        ];
+        const colors = ["#f5f0ff","#fff0f0","#f0f8ff","#f1fff6","#fffdf0","#fdf0ff"];
+
+        function tell(){
+            const res = document.getElementById("result");
+            res.classList.remove("fade");
+            const idx = Math.floor(Math.random()*fortunes.length);
+            res.textContent = fortunes[idx];
+            res.style.background = colors[idx % colors.length] + "cc";
+            setTimeout(()=>res.classList.add("fade"),20);
+        }
+    </script>
+</body>
+</html>
