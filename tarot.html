@@ -28,8 +28,6 @@
     <link rel="icon" href="img/favicon.png"/>
 </head>
 <body class="light">
-<script src="js/i18n.js"></script>
-<script src="js/common.js"></script>
 <header id="header"></header>
 <main>
     <div class="card">
@@ -59,8 +57,7 @@
     ];
     function initTarot(){
         document.querySelectorAll('.tarot-card').forEach(card=>{
-            card.textContent='❓';
-            card.classList.remove('flipped');
+            card.textContent='❓'; card.classList.remove('flipped');
             card.onclick=()=>flipCard(card);
         });
         document.getElementById('tarotResult').textContent='';
@@ -68,12 +65,10 @@
     function flipCard(card){
         if(card.classList.contains('flipped')) return;
         const pos=card.dataset.pos;
-        const cards = window.getTarotCards();
-        const idx=Math.floor(Math.random()*cards.length);
-        card.textContent=cards[idx];
-        card.classList.add('flipped');
-        const labels=[window.i18n.t('tarot_past'), window.i18n.t('tarot_present'), window.i18n.t('tarot_future')];
-        document.getElementById('tarotResult').innerHTML+=`${labels[pos]}：<strong>${cards[idx]}</strong><br>`;
+        const idx=Math.floor(Math.random()*tarotCards.length);
+        card.textContent=tarotCards[idx]; card.classList.add('flipped');
+        const labels=['过去','现在','未来'];
+        document.getElementById('tarotResult').innerHTML+=`${labels[pos]}：<strong>${tarotCards[idx]}</strong><br>`;
     }
     initTarot();
 </script>
