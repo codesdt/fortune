@@ -29,12 +29,14 @@
     <link rel="icon" href="img/favicon.png"/>
 </head>
 <body class="light">
+<script src="js/i18n.js"></script>
+<script src="js/common.js"></script>
 <header id="header"></header>
 <main>
     <div class="card">
-        <h1>今日幸运签</h1>
+        <h1 data-translate="lucky_title">今日幸运签</h1>
         <p>每日 00:00 自动刷新，点击下方按钮立即抽取。</p>
-        <button class="btn" onclick="drawLucky()">抽取今日幸运签</button>
+        <button class="btn" onclick="drawLucky()" data-translate="lucky_btn">抽取今日幸运签</button>
         <div id="luckyResult">点击下方按钮，让好运发生 ✨</div>
     </div>
 </main>
@@ -50,13 +52,17 @@
     ];
     const luckyColors = ["樱花粉","薄荷绿","薰衣草紫","天空蓝","柠檬黄"];
     function drawLucky(){
+        const fortunes = window.getLuckyFortunes();
+        const colors = window.getLuckyColors();
         const idx = Math.floor(Math.random()*fortunes.length);
         const luckyNum = Math.floor(Math.random()*99)+1;
-        const luckyClr = luckyColors[Math.floor(Math.random()*luckyColors.length)];
+        const luckyClr = colors[Math.floor(Math.random()*colors.length)];
+        const colorHex = ['#ff85a2','#4cd3a6','#b388ff','#5cabff','#ffd93d'][colors.indexOf(luckyClr)];
+
         document.getElementById('luckyResult').innerHTML = `
         <strong>${fortunes[idx]}</strong><br>
-        幸运颜色：<span style="color:${['#ff85a2','#4cd3a6','#b388ff','#5cabff','#ffd93d'][luckyColors.indexOf(luckyClr)]}">${luckyClr}</span>｜幸运数字：<strong>${luckyNum}</strong>
-      `;
+        ${window.i18n.t('lucky_color')}：<span style="color:${colorHex}">${luckyClr}</span>｜${window.i18n.t('lucky_number')}：<strong>${luckyNum}</strong>
+    `;
     }
 </script>
 </body>

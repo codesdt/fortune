@@ -75,3 +75,78 @@ p,li{line-height:1.9;font-size:18px;margin-bottom:20px}
 #themeToggle{position:fixed;bottom:28px;right:28px;background:#ffffff40;border:none;border-radius:50%;width:56px;height:56px;font-size:26px;cursor:pointer;backdrop-filter:blur(8px);transition:.3s}
 #themeToggle:hover{transform:rotate(30deg)}
 footer{background:#ffffff20;text-align:center;padding:40px 24px;font-size:16px;color:#555}
+/* 多语言功能样式 */
+.language-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.language-switcher span {
+    color: inherit;
+    margin-right: 4px;
+}
+
+.lang-btn {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.lang-btn.active {
+    background: white;
+    color: var(--primary);
+    border-color: white;
+    font-weight: 600;
+}
+
+.dark .lang-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .lang-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.i18n-loading {
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+@media(max-width: 768px) {
+    .language-switcher {
+        order: -1;
+        margin-bottom: 16px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nav-bar {
+        flex-wrap: wrap;
+    }
+
+    .lang-btn {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
